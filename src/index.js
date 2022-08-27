@@ -1,19 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import Router from './Router';
-import reportWebVitals from './reportWebVitals';
-import { HelmetProvider } from 'react-helmet-async';
+import React from "react";
+import ReactDOM , {hydrateRoot } from "react-dom/client";
+import Router from "./Router";
+import reportWebVitals from "./reportWebVitals";
+import { HelmetProvider } from "react-helmet-async";
+import 'bootstrap/dist/css/bootstrap.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <HelmetProvider>
-          <Router />
-    </HelmetProvider>
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(
+//   <React.StrictMode>
+//     <HelmetProvider>
+//       <Router />
+//     </HelmetProvider>
+//   </React.StrictMode>
+// );
+const rootElement = document.getElementById("root");
+const root = ReactDOM.createRoot(rootElement);
+if (rootElement.hasChildNodes()) {
+  hydrateRoot(
+    <React.StrictMode>
+      <HelmetProvider>
+        <Router />
+      </HelmetProvider>
+    </React.StrictMode>,
+    rootElement
+  );
+} else {
+  root.render(
+    <React.StrictMode>
+      <HelmetProvider>
+        <Router />
+      </HelmetProvider>
+    </React.StrictMode>,
+  );
+}
 reportWebVitals();
