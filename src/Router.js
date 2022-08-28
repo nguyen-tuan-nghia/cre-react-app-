@@ -1,17 +1,46 @@
+import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout";
-import Home from "./pages/Home/Home";
-import Contact from "./pages/Home/Contact";
-import NoPage from "./pages/Home/NoPage";
+const Layout = React.lazy(() => import("./pages/Layout"));
+const Home = React.lazy(() => import("./pages/Home/Home"));
+const Contact = React.lazy(() => import("./pages/Home/Contact"));
+const NoPage = React.lazy(() => import("./pages/Home/NoPage"));
 
 export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="*" element={<NoPage />} />
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <Layout />
+            </Suspense>
+          }
+        >
+          <Route
+            index
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Home />
+              </Suspense>
+            }
+          />
+          <Route
+            path="contact"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Contact />
+              </Suspense>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <NoPage />
+              </Suspense>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

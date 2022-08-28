@@ -1,5 +1,14 @@
+import { Helmet } from 'react-helmet-async';
 const Contact = () => {
-    return <h1>Contact Me</h1>;
+    return (
+      <>
+            <Helmet>
+        <title>Contact</title>
+        <meta name="description" content="okokokok" />
+    </Helmet>
+      <h1>Contact</h1>
+      </>
+    );
   };
   
   export default Contact;
