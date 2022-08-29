@@ -19,7 +19,7 @@ const Home = () => {
         <title>My Home</title>
         <meta name="description" content="Helmet application" />
     </Helmet>
-  <h1>Home aa</h1>
+  <h1>Home aak</h1>
   <div>
     <img src={pet} alt=''/>
   </div>
